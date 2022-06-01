@@ -12,13 +12,13 @@ export default function Home({ posts }) {
 
       <div>
         {data && data.length && data.map((post) => (
-            <Link href={`/post/${post.id}`} key={post.id}>
-                <a>
+            // <Link href={`/post/${post.id}`} key={post.id}>
+                <a  key={post.id}>
                   <h2>{post.attributes.title}</h2>
                   <p>{post.attributes.content}</p>
                   <h3>{post.attributes.user.data.attributes.username}</h3>
                 </a>
-            </Link>
+            // </Link>
         ))}
       </div>
     </div>
