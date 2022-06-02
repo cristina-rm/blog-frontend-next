@@ -7,18 +7,18 @@ export default function Home({ posts }) {
     const { data } = posts; // unpack `data` from `posts`
 
   return (
-    <div>
-      <h1 className="font-bold italic text-green-500">Hello frontend</h1>
+    <div className="p-10">
+      <h1 className="font-bold italic text-green-500 mb-8">Hello tailwind</h1>
 
-      <div>
-        {data && data.length && data.map((post) => (
-            // <Link href={`/post/${post.id}`} key={post.id}>
-                <a  key={post.id}>
-                  <h2>{post.attributes.title}</h2>
+      <div className="flex-column space-y-8">
+        {data && data.length && data.map((post, index) => (
+            <Link href={`/post/${post.id}`} key={post.id}>
+                <a className="mb-2">
+                  <h2 className="font-bold text-gray-600">{post.attributes.title}</h2>
                   <p>{post.attributes.content}</p>
-                  <h3>{post.attributes.user.data.attributes.username}</h3>
+                  <h3 className="italic text-sm font-semibold">Author: {post.attributes.user.data.attributes.username}</h3>
                 </a>
-            // </Link>
+            </Link>
         ))}
       </div>
     </div>
@@ -27,17 +27,20 @@ export default function Home({ posts }) {
 
 export async function getStaticProps() {
   // Get posts from the API
-    const qs = require('qs');
-    const query = qs.stringify({
+    const url = process.env.API_URL;
+    // console.log(url);
+    // const qs = require('qs');
+    /*const query = qs.stringify({
       populate: '*',
     }, {
       encodeValuesOnly: true,
-    });
+    });*/
 
-  // const res = await fetch('http://localhost:1337/api/posts?populate=*');
-  const res = await fetch(`http://localhost:1337/api/posts?${query}`);
+  // const res = await fetch(`http://localhost:1337/api/posts?${query}`);
+  const res = await fetch(`${url}/posts?populate=*`);
   const posts = await res.json();
-  // console.log(posts.data);
+  console.log(posts.data);
+  // const posts = {};
 
   return {
     props: { posts }
