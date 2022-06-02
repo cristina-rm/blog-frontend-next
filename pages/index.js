@@ -7,7 +7,7 @@ import { fetchAPI } from "../lib/api";
 export default function Home({ posts }) {
   return (
     <div className="p-10">
-      <h1 className="font-bold italic text-green-500 mb-8">Hello next frontend</h1>
+      <h1 className="font-bold italic text-green-500 mb-8">Hello my frontend, finally!</h1>
       <h1 className="font-bold red mb-8">API endpoint: { process.env.API_ENDPOINT }</h1>
 
       <div className="flex-column space-y-8">

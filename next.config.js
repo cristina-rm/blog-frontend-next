@@ -8,7 +8,7 @@ const nextConfig = {
     domains: ["localhost"],
   },
   env: {
-    API_ENDPOINT: process.env.STRAPI_URL
+    API_ENDPOINT: process.env.NEXT_PUBLIC_STRAPI_API_URL
   }
 }
 
