@@ -10,31 +10,28 @@ export default function Post({ post }) {
 }
 
 export async function getStaticPaths() {
-    const resp = await fetch('http://localhost:1337/api/posts');
+    const resp = await fetch('http://localhost:1337/api/posts?populate=*');
     const posts = await resp.json();
     // console.log(posts);
 
     const paths = posts.data.map((post) => ({
-        params: { id: String(post.id) }
+        params: { id: post.id.toString() }
     }));
-    // console.log(paths);
 
     return {
         paths,
-        fallback: true
+        fallback: false
     }
 }
 
 export async function getStaticProps({ params }) {
-    const { id } = params;
-    // console.log(id);
-    const resp = await fetch(`http://localhost:1337/api/posts/${id}`);
-    // console.log(`http://localhost:1337/api/posts/${id}`);
-    const data = await resp.json();
-    const post = data.data;
-    // console.log(post);
+    const resp = await fetch(`http://localhost:1337/api/posts/${params.id}?populate=*`);
+    // const resp = await fetch(`http://localhost:1337/api/posts/${id}`);
+
+    const post = await resp.json();
 
     return {
-        props: { post }
+        props: { post: post.data },
+        revalidate: 1
     }
 }

@@ -25,24 +25,41 @@ export default function Home({ posts }) {
   )
 }
 
-export async function getStaticProps() {
+/*export async function getStaticProps() {
   // Get posts from the API
     const url = process.env.API_URL;
-    // console.log(url);
+    console.log(url); // undefined
+
     // const qs = require('qs');
-    /*const query = qs.stringify({
+    /!*const query = qs.stringify({
       populate: '*',
     }, {
       encodeValuesOnly: true,
-    });*/
+    });*!/
 
+  const res = await fetch(`http://localhost:1337/api/posts?populate=*`);
   // const res = await fetch(`http://localhost:1337/api/posts?${query}`);
-  const res = await fetch(`${url}/posts?populate=*`);
+  // const res = await fetch(`${url}/posts?populate=*`);
   const posts = await res.json();
-  console.log(posts.data);
-  // const posts = {};
+  // console.log(posts.data);
 
   return {
     props: { posts }
+  };
+}*/
+
+export async function getServerSideProps() {
+  const postRes = await fetch('http://localhost:1337/api/posts?populate=*');
+  // const categoryRes = await fetch('http://localhost:1337/api/categories');
+
+  const posts = await postRes.json();
+  // const categories = await categoryRes.json();
+    console.log(posts);
+
+  return {
+    props: {
+      posts,
+      // categories,
+    },
   };
 }
