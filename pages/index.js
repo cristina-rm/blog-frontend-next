@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css'
 import Link from "next/link";
 
 export default function Home({ posts }) {
-    const { data } = posts; // unpack `data` from `posts`
+    // const { data } = posts; // unpack `data` from `posts`
 
   return (
     <div className="p-10">
