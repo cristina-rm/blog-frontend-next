@@ -9,6 +9,7 @@ export default function Home({ posts }) {
   return (
     <div className="p-10">
       <h1 className="font-bold italic text-green-500 mb-8">Hello next frontend</h1>
+      <h1 className="font-bold red mb-8">API endpoint: { process.env.API_ENDPOINT }</h1>
 
       <div className="flex-column space-y-8">
           {/*<h2 className="font-bold text-gray-600">post.attributes.title</h2>
@@ -53,7 +54,7 @@ export default function Home({ posts }) {
 
 export async function getServerSideProps() {
     const url = process.env.API_ENDPOINT;
-    // console.log(url); // undefined
+    // console.log('api url: '+process.env.NEXT_PUBLIC_STRAPI_URL); // undefined
 
   // const postRes = await fetch('http://localhost:1337/api/posts?populate=*');
   const postRes = await fetch(`${url}/posts?populate=*`);
