@@ -12,6 +12,7 @@ export default function Post({ post }) {
 
 /*
 export async function getStaticPaths() {
+    const url = process.env.API_ENDPOINT;
     const resp = await fetch('http://localhost:1337/api/posts?populate=*');
     const posts = await resp.json();
     // console.log(posts);
@@ -27,6 +28,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
+    const url = process.env.API_ENDPOINT;
     const resp = await fetch(`http://localhost:1337/api/posts/${params.id}?populate=*`);
     // const resp = await fetch(`http://localhost:1337/api/posts/${id}`);
 

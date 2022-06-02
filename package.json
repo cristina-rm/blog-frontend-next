@@ -9,6 +9,8 @@
   },
   "dependencies": {
     "autoprefixer": "^10.4.7",
+    "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
     "marked": "^4.0.16",
     "next": "12.1.6",
     "postcss": "^8.4.14",

@@ -52,7 +52,11 @@ export default function Home({ posts }) {
 }*/
 
 export async function getServerSideProps() {
-  const postRes = await fetch('http://localhost:1337/api/posts?populate=*');
+    const url = process.env.API_ENDPOINT;
+    // console.log(url); // undefined
+
+  // const postRes = await fetch('http://localhost:1337/api/posts?populate=*');
+  const postRes = await fetch(`${url}/posts?populate=*`);
   // const categoryRes = await fetch('http://localhost:1337/api/categories');
 
   const posts = await postRes.json();
